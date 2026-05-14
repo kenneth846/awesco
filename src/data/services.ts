@@ -45,7 +45,7 @@ export const SERVICES: Record<string, ServiceData> = {
   // ─── 1. Septic Tank Pumping ────────────────────────────────────────────────
   'septic-tank-pumping': {
     slug: 'septic-tank-pumping',
-    heroImage: '/services-hero.webp',
+    heroImage: '/hero-bg.webp',
     metaTitle: 'Septic Tank Pumping | Snohomish | A Wesco Septic',
     metaDescription:
       'Professional septic tank pumping throughout Snohomish County, King County, and Camano Island. Every pump includes a complimentary inspection. Call (360) 668-6561.',
@@ -96,7 +96,7 @@ export const SERVICES: Record<string, ServiceData> = {
   // ─── 2. Septic Inspections ─────────────────────────────────────────────────
   'septic-inspections': {
     slug: 'septic-inspections',
-    heroImage: '/services-hero.webp',
+    heroImage: '/service-septic-inspections.webp',
     metaTitle: 'Septic System Inspections | Snohomish | A Wesco Septic',
     metaDescription:
       'Routine and real estate septic inspections throughout Snohomish County, King County, and Camano Island. Trusted by homeowners and real estate agents since 1989. Call (360) 668-6561.',
@@ -147,7 +147,7 @@ export const SERVICES: Record<string, ServiceData> = {
   // ─── 3. Septic Repairs ─────────────────────────────────────────────────────
   'septic-repairs': {
     slug: 'septic-repairs',
-    heroImage: '/services-hero.webp',
+    heroImage: '/service-septic-repairs.webp',
     metaTitle: 'Septic Repairs | Snohomish | A Wesco Septic',
     metaDescription:
       'Expert septic system repairs in Snohomish County, King County, and Camano Island. Jetting, line repairs, electrical work, and more. 24/7 emergency response. Call (360) 668-6561.',
@@ -200,7 +200,7 @@ export const SERVICES: Record<string, ServiceData> = {
   // ─── 4. Drain Field Repair ─────────────────────────────────────────────────
   'septic-drainfield-repair': {
     slug: 'septic-drainfield-repair',
-    heroImage: '/services-hero.webp',
+    heroImage: '/service-drain-field.jpg',
     metaTitle: 'Septic Drain Field Repair | Snohomish | A Wesco Septic',
     metaDescription:
       'Drain field repair and restoration in Snohomish County, King County, and Camano Island. Soggy ground, slow drains, sewage odors — we diagnose and fix it. Call (360) 668-6561.',
@@ -252,7 +252,7 @@ export const SERVICES: Record<string, ServiceData> = {
   // ─── 5. Maintenance Agreements ─────────────────────────────────────────────
   'maintenance-agreements': {
     slug: 'maintenance-agreements',
-    heroImage: '/services-hero.webp',
+    heroImage: '/service-maintenance-agreement.webp',
     metaTitle: 'Septic Maintenance Agreements | Snohomish | A Wesco Septic',
     metaDescription:
       'Stay ahead of septic problems with a maintenance agreement from A Wesco Septic. Routine pumping, inspections, and priority service across Snohomish County, King County, and Camano Island. Call (360) 668-6561.',
