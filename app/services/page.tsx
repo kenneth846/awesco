@@ -21,30 +21,45 @@ const services = [
     title: 'Septic Tank Pumping',
     href: '/services/septic-tank-pumping',
     body: 'Routine pumping every 2–3 years keeps your system healthy and prevents costly backups. Every pump includes a complimentary courtesy inspection.',
+    image: '/hero-bg.webp',
+    imageAlt: 'A Wesco septic pumping trucks ready for service',
+    imagePosition: 'object-center',
   },
   {
     n: '02', tag: 'Real Estate',
     title: 'Septic System Inspections',
     href: '/services/septic-inspections',
     body: 'Routine, pre-purchase, and escrow inspections. Written reports delivered promptly — trusted by homeowners and real estate agents throughout the region.',
+    image: '/service-septic-inspections.webp',
+    imageAlt: 'Technician documenting a septic system inspection',
+    imagePosition: 'object-center',
   },
   {
     n: '03', tag: 'Full Scope',
     title: 'Septic Repairs',
     href: '/services/septic-repairs',
     body: 'From jetting and line repairs to pump replacements and advanced electrical work — we handle the full range of septic system repair.',
+    image: '/service-septic-repairs.webp',
+    imageAlt: 'Septic repair work in a residential yard',
+    imagePosition: 'object-center',
   },
   {
     n: '04', tag: 'Restoration',
     title: 'Drain Field Repair',
     href: '/services/septic-drainfield-repair',
     body: 'Soggy ground, standing water, sewage odors outdoors? We diagnose and restore failing drain fields with targeted repairs before recommending replacement.',
+    image: '/service-drain-field.jpg',
+    imageAlt: 'Drain field installation with pipe and gravel',
+    imagePosition: 'object-center',
   },
   {
     n: '05', tag: 'Stay Ahead',
     title: 'Maintenance Agreements',
     href: '/services/maintenance-agreements',
     body: 'We track your service history, remind you when you\'re due, and show up on schedule. Priority scheduling and discounted rates for agreement customers.',
+    image: '/service-maintenance-agreement.webp',
+    imageAlt: 'A Wesco maintenance agreement graphic',
+    imagePosition: 'object-center',
   },
 ];
 
@@ -132,19 +147,29 @@ export default function ServicesPage() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className={`group flex flex-col justify-between bg-bone-100 p-8 transition-colors hover:bg-ink-900 hover:text-bone-200 lg:p-10 ${i === 0 ? 'lg:col-span-2' : ''}`}
+                  className={`group relative isolate flex min-h-[330px] flex-col justify-between overflow-hidden bg-ink-900 p-8 text-bone-200 transition-transform duration-300 hover:-translate-y-0.5 lg:p-10 ${i === 0 ? 'lg:col-span-2' : ''}`}
                 >
-                  <div>
-                    <div className="flex items-start justify-between mb-6">
-                      <span className="font-mono text-[10px] uppercase tracking-wider2 text-ink-500 group-hover:text-hi">/ {s.n}</span>
-                      <span className="border border-ink-500/30 px-2 py-1 font-mono text-[9px] uppercase tracking-wider2 text-ink-700 group-hover:border-hi group-hover:text-hi">{s.tag}</span>
-                    </div>
-                    <h2 className="font-display text-3xl uppercase leading-tight tracking-tight text-ink-900 group-hover:text-bone-200 lg:text-4xl">{s.title}</h2>
-                    <p className="mt-4 text-sm leading-relaxed text-ink-700 group-hover:text-bone-300">{s.body}</p>
+                  <Image
+                    src={s.image}
+                    alt={s.imageAlt}
+                    fill
+                    className={`${s.imagePosition} object-cover transition-transform duration-700 group-hover:scale-105`}
+                    sizes={i === 0 ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
+                  />
+                  <div className="absolute inset-0 bg-ink-900/55 transition-colors duration-300 group-hover:bg-ink-900/45" aria-hidden />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/55 to-ink-900/25" aria-hidden />
+
+                  <div className="relative z-10 flex items-start justify-between mb-6">
+                    <span className="font-mono text-[10px] uppercase tracking-wider2 text-hi">/ {s.n}</span>
+                    <span className="border border-bone-200/30 bg-ink-900/25 px-2 py-1 font-mono text-[9px] uppercase tracking-wider2 text-bone-200 backdrop-blur-sm transition-colors group-hover:border-hi group-hover:text-hi">{s.tag}</span>
                   </div>
-                  <div className="mt-8 flex items-center gap-2 font-display text-sm uppercase tracking-wider text-ink-900 group-hover:text-hi">
-                    Learn More
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-12" />
+                  <div className="relative z-10 mt-14">
+                    <h2 className="font-display text-3xl uppercase leading-tight tracking-tight text-bone-100 lg:text-4xl">{s.title}</h2>
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-bone-200/90">{s.body}</p>
+                    <div className="mt-8 flex items-center gap-2 font-display text-sm uppercase tracking-wider text-hi">
+                      Learn More
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-12" />
+                    </div>
                   </div>
                 </Link>
               ))}

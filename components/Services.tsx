@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Star } from 'lucide-react';
 
@@ -8,6 +9,9 @@ const services = [
     href: '/services/septic-tank-pumping',
     blurb: 'Routine pumping every 2–3 years keeps your system healthy and prevents costly backups. Every pump includes a complimentary inspection.',
     tag: 'MOST REQUESTED',
+    image: '/hero-bg.webp',
+    imageAlt: 'A Wesco septic pumping trucks ready for service',
+    imagePosition: 'object-center',
   },
   {
     n: '02',
@@ -15,6 +19,9 @@ const services = [
     href: '/services/septic-inspections',
     blurb: 'Routine, real-estate, and pre-purchase inspections. We catch problems early — and document everything you need for escrow.',
     tag: 'REAL ESTATE',
+    image: '/service-septic-inspections.webp',
+    imageAlt: 'Technician documenting a septic system inspection',
+    imagePosition: 'object-center',
   },
   {
     n: '03',
@@ -22,6 +29,9 @@ const services = [
     href: '/services/septic-repairs',
     blurb: 'Jetting, line repairs, and advanced electrical work. We handle the full range of septic system repairs and maintenance.',
     tag: 'FULL SCOPE',
+    image: '/service-septic-repairs.webp',
+    imageAlt: 'Septic repair work in a residential yard',
+    imagePosition: 'object-center',
   },
   {
     n: '04',
@@ -29,6 +39,9 @@ const services = [
     href: '/services/septic-drainfield-repair',
     blurb: 'Soggy ground, standing water, slow drains? We diagnose and restore failing drain fields throughout the region.',
     tag: 'RESTORATION',
+    image: '/service-drain-field.jpg',
+    imageAlt: 'Drain field installation with pipe and gravel',
+    imagePosition: 'object-center',
   },
   {
     n: '05',
@@ -36,6 +49,9 @@ const services = [
     href: '/services/maintenance-agreements',
     blurb: 'Stay on schedule, reduce emergencies, and stretch the life of your system with a routine service plan.',
     tag: 'STAY AHEAD',
+    image: '/service-maintenance-agreement.webp',
+    imageAlt: 'A Wesco maintenance agreement graphic',
+    imagePosition: 'object-center',
   },
 ];
 
@@ -79,27 +95,40 @@ export default function Services() {
             <Link
               key={s.href}
               href={s.href}
-              className={`group relative bg-bone-100 p-8 transition-colors duration-200 hover:bg-ink-900 hover:text-bone-200 lg:p-10 ${
+              className={`group relative isolate flex min-h-[330px] flex-col justify-between overflow-hidden bg-ink-900 p-8 text-bone-200 transition-transform duration-300 hover:-translate-y-0.5 lg:p-10 ${
                 i === 0 ? 'lg:col-span-2' : ''
               }`}
             >
-              <div className="flex items-start justify-between">
-                <span className="font-mono text-xs tracking-wider2 text-ink-500 group-hover:text-hi">
+              <Image
+                src={s.image}
+                alt={s.imageAlt}
+                fill
+                className={`${s.imagePosition} object-cover transition-transform duration-700 group-hover:scale-105`}
+                sizes={i === 0 ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
+              />
+              <div className="absolute inset-0 bg-ink-900/55 transition-colors duration-300 group-hover:bg-ink-900/45" aria-hidden />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/55 to-ink-900/25" aria-hidden />
+
+              <div className="relative z-10 flex items-start justify-between">
+                <span className="font-mono text-xs tracking-wider2 text-hi">
                   / {s.n}
                 </span>
-                <span className="border border-ink-500/30 px-2 py-1 font-mono text-[9px] uppercase tracking-wider2 text-ink-700 group-hover:border-hi group-hover:text-hi">
+                <span className="border border-bone-200/30 bg-ink-900/25 px-2 py-1 font-mono text-[9px] uppercase tracking-wider2 text-bone-200 backdrop-blur-sm transition-colors group-hover:border-hi group-hover:text-hi">
                   {s.tag}
                 </span>
               </div>
-              <h3 className="mt-10 font-display text-3xl uppercase leading-tight tracking-tight text-ink-900 group-hover:text-bone-200 lg:text-4xl">
-                {s.title}
-              </h3>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-700 group-hover:text-bone-300">
-                {s.blurb}
-              </p>
-              <div className="mt-8 inline-flex items-center gap-2 font-display text-sm uppercase tracking-wider text-ink-900 group-hover:text-hi">
-                Learn More
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-12" />
+
+              <div className="relative z-10 mt-14">
+                <h3 className="font-display text-3xl uppercase leading-tight tracking-tight text-bone-100 lg:text-4xl">
+                  {s.title}
+                </h3>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-bone-200/90">
+                  {s.blurb}
+                </p>
+                <div className="mt-8 inline-flex items-center gap-2 font-display text-sm uppercase tracking-wider text-hi">
+                  Learn More
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-12" />
+                </div>
               </div>
             </Link>
           ))}

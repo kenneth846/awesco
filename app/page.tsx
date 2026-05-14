@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import TopBar from '@/components/TopBar';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import ServiceAreaChecker from '@/components/ServiceAreaChecker';
 import Marquee from '@/components/Marquee';
 import Services from '@/components/Services';
 import WhyUs from '@/components/WhyUs';
@@ -30,7 +29,6 @@ export default function HomePage() {
         <Hero />
         <Marquee />
         <Services />
-        <ServiceAreaChecker />
         <WhyUs />
         <ServiceAreas />
         <Reviews />

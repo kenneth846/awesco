@@ -1,44 +1,8 @@
 import Link from 'next/link';
 import ServiceAreaChecker from './ServiceAreaChecker';
+import { SERVICE_AREA_MAP_CITIES } from '@/src/data/serviceAreaMap';
 
-const cities = [
-  { name: 'Snohomish', slug: 'snohomish-washington' },
-  { name: 'Everett', slug: 'everett-washington' },
-  { name: 'Lake Stevens', slug: 'lake-stevens-washington' },
-  { name: 'Marysville', slug: 'marysville-washington' },
-  { name: 'Monroe', slug: 'monroe-washington' },
-  { name: 'Mukilteo', slug: 'mukilteo-washington' },
-  { name: 'Arlington', slug: 'arlington-washington' },
-  { name: 'Granite Falls', slug: 'granite-falls-washington' },
-  { name: 'Stanwood', slug: 'stanwood-washington' },
-  { name: 'Sultan', slug: 'sultan-washington' },
-  { name: 'Gold Bar', slug: 'goldbar-washington' },
-  { name: 'Tulalip', slug: 'tulalip-washington' },
-  { name: 'Mill Creek', slug: 'mill-creek-washington' },
-  { name: 'Bothell', slug: 'bothell-washington' },
-  { name: 'Edmonds', slug: 'edmonds-washington' },
-  { name: 'Lynnwood', slug: 'lynnwood-washington' },
-  { name: 'Mountlake Terrace', slug: 'mountlake-terrace-washington' },
-  { name: 'Shoreline', slug: 'shoreline-washington' },
-  { name: 'Bellevue', slug: 'bellevue' },
-  { name: 'Kirkland', slug: 'kirkland-washington' },
-  { name: 'Kenmore', slug: 'kenmore-washington' },
-  { name: 'Redmond', slug: 'redmond-washington' },
-  { name: 'Sammamish', slug: 'sammamish-washington' },
-  { name: 'Mercer Island', slug: 'mercer-island-washington' },
-  { name: 'Issaquah', slug: 'issaquah-washington' },
-  { name: 'Carnation', slug: 'carnation-washington' },
-  { name: 'Duvall', slug: 'duvall-washington' },
-  { name: 'Fall City', slug: 'fall-city-washington' },
-  { name: 'Preston', slug: 'preston-washington' },
-  { name: 'Renton', slug: 'renton-washington' },
-  { name: 'Seattle', slug: 'seattle-washington' },
-  { name: 'SeaTac', slug: 'seatac-washington' },
-  { name: 'Burien', slug: 'burien-washington' },
-  { name: 'Tukwila', slug: 'tukwila-washington' },
-  { name: 'Woodinville', slug: 'woodinville-washington' },
-  { name: 'Camano Island', slug: 'camano-island-washington' },
-];
+const cities = SERVICE_AREA_MAP_CITIES.map(({ name, slug }) => ({ name, slug }));
 
 export default function ServiceAreas() {
   return (
@@ -56,7 +20,7 @@ export default function ServiceAreas() {
               <div className="mb-4 flex items-center gap-3">
                 <span className="h-px w-8 bg-ink-900" aria-hidden />
                 <span className="font-mono text-[10px] uppercase tracking-wider2 text-ink-500 sm:text-[11px]">
-                  / Service Areas · 36 Communities
+                  / Service Areas · {cities.length} Communities
                 </span>
               </div>
               <h2 className="font-display text-4xl uppercase leading-[0.9] tracking-tightest sm:text-5xl lg:text-6xl">
@@ -159,23 +123,48 @@ export default function ServiceAreas() {
                   <text x="258" y="257" fontFamily="monospace" fontSize="8" fill="#F5F5F2" fontWeight="bold">HQ</text>
                   <text x="258" y="267" fontFamily="monospace" fontSize="7" fill="#888">Snohomish</text>
 
-                  {/* Key cities */}
-                  <circle cx="185" cy="228" r="2.5" fill="#39FF14" opacity="0.85"/>
-                  <text x="192" y="232" fontFamily="monospace" fontSize="8.5" fill="#C9C9C2">Everett</text>
-                  <circle cx="229" cy="329" r="2.5" fill="#39FF14" opacity="0.7"/>
-                  <text x="236" y="333" fontFamily="monospace" fontSize="8" fill="#888">Kirkland</text>
-                  <circle cx="163" cy="370" r="2.5" fill="#39FF14" opacity="0.8"/>
-                  <text x="170" y="374" fontFamily="monospace" fontSize="8.5" fill="#C9C9C2">Seattle</text>
-                  <circle cx="237" cy="445" r="2.5" fill="#39FF14" opacity="0.7"/>
-                  <text x="244" y="449" fontFamily="monospace" fontSize="8" fill="#888">Renton</text>
-                  <circle cx="182" cy="167" r="2" fill="#39FF14" opacity="0.65"/>
-                  <text x="189" y="171" fontFamily="monospace" fontSize="7.5" fill="#888">Arlington</text>
-                  <circle cx="268" cy="336" r="2" fill="#39FF14" opacity="0.65"/>
-                  <text x="275" y="340" fontFamily="monospace" fontSize="7.5" fill="#888">Redmond</text>
-                  <circle cx="308" cy="392" r="2" fill="#39FF14" opacity="0.65"/>
-                  <text x="315" y="396" fontFamily="monospace" fontSize="7.5" fill="#888">Issaquah</text>
-                  <circle cx="237" cy="349" r="2" fill="#39FF14" opacity="0.65"/>
-                  <text x="185" y="353" fontFamily="monospace" fontSize="7.5" fill="#888">Bellevue</text>
+                  {/* Service-area city data */}
+                  <g aria-label="A Wesco Septic service area city markers">
+                    {SERVICE_AREA_MAP_CITIES.map(city => (
+                      <a
+                        key={city.slug}
+                        href={`/service-area/${city.slug}`}
+                        className="group outline-none"
+                        aria-label={`${city.name} septic service area`}
+                      >
+                        <title>{`${city.name} · ${city.county}`}</title>
+                        <circle
+                          cx={city.x}
+                          cy={city.y}
+                          r={city.featured ? 7 : 5}
+                          fill="rgba(57,255,20,0.06)"
+                          stroke="rgba(57,255,20,0.20)"
+                          strokeWidth="0.6"
+                          className="opacity-40 transition-opacity group-hover:opacity-100"
+                        />
+                        <circle
+                          cx={city.x}
+                          cy={city.y}
+                          r={city.featured ? 3 : 2.2}
+                          fill="#39FF14"
+                          opacity={city.featured ? 0.95 : 0.68}
+                          className="transition-opacity group-hover:opacity-100"
+                        />
+                        <text
+                          x={city.x + (city.labelDx ?? 6)}
+                          y={city.y + (city.labelDy ?? 3)}
+                          fontFamily="monospace"
+                          fontSize={city.featured ? 8.2 : 6.4}
+                          fill={city.featured ? '#C9C9C2' : 'rgba(245,245,242,0.52)'}
+                          fontWeight={city.featured ? 'bold' : 'normal'}
+                          textAnchor={city.labelAnchor ?? 'start'}
+                          className="pointer-events-none transition-colors group-hover:fill-hi"
+                        >
+                          {city.label ?? city.name}
+                        </text>
+                      </a>
+                    ))}
+                  </g>
 
                   {/* Scale */}
                   <line x1="360" y1="542" x2="460" y2="542" stroke="#374151" strokeWidth="1"/>
